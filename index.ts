@@ -30,6 +30,10 @@ class TaskManager <T extends Task> {
     filtertask (isComplete: boolean) : T[] {
         return this.tasks.filter(task=> task.isComplete === isComplete);
     }
+
+    deleteTask (taskid: number): void {
+        this.tasks = this.tasks.filter(task => task.id !== taskid);
+    }
 }
 
 const Manager = new TaskManager<Task>();
@@ -37,7 +41,10 @@ Manager.addTask({id: 1, Title: "Complete typescript tutorial", Description: "Dav
 Manager.addTask({id: 2, Title: "Watch", Description: "Love Island S3ep24", isComplete: true});
 Manager.addTask({id: 3, Title: "Clothes", Description: "Unhang all the clothes", isComplete: false});
 Manager.addTask({id: 4, Title: "Tokens", Description: "Pay electricity tokens", isComplete: true});
-Manager.listtasks();
-console.log(Manager);
+// Manager.listtasks();
+// console.log(Manager);
 // console.log(Manager.filtertask(true));
 // console.log(Manager.filtertask(false));
+Manager.deleteTask(3);
+Manager.listtasks();
+console.log(Manager);
